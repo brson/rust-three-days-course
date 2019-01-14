@@ -22,7 +22,7 @@ const LocaleSelector = (function(){
     },
     setLocale: function(locale, location){
       location = location || new URL(window.location);
-      locale = locale || this.defaultLocale;
+      this.locale = locale || this.defaultLocale;
       const md = this.localeFiles[locale];
       if(md){
         this.clearSlide();
@@ -56,6 +56,7 @@ const LocaleSelector = (function(){
       const fragment = document.importNode(this.templates.localeSelector, true);
       slide.appendChild(fragment);
       const select = slide.querySelector("select");
+      select.value=this.locale;
       select.addEventListener("change", e => {
         const locale = select.value;
         const location = new URL(window.location);
