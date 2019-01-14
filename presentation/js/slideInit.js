@@ -5,6 +5,22 @@ if (urlParams.has("chapter")) {
 } else {
     chapter = "intro";
 }
+
+var defaultLocale = "en-US";
+
+(function() {
+	var docLocation = new URL(window.location);
+	var locale =
+		docLocation.searchParams.get("locale") || defaultLocale;
+
+	window.document.addEventListener("keydown", function(e) {
+		if (e.key == "t") {
+			// FIXME localization
+			window.location = "toc/english.html";
+		}
+	});
+})();
+
 LocaleSelector.initialize({
     templates: {
         slide: document.querySelector("#markdown-section"),
@@ -16,7 +32,7 @@ LocaleSelector.initialize({
         "de-DE": "chapters/de-DE/" + chapter + ".chapter",
         "es-ES": "chapters/es-ES/" + chapter + ".chapter"
     },
-    default: "en-US",
+    default: defaultLocale,
     reveal: {
         history: true,
         dependencies: [
