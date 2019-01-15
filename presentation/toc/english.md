@@ -1,13 +1,26 @@
 # Rust in Three Days
 
+* [Top](../index.html?locale=en-US)
+
+## Lesson 1 - A Whirlwind Start
+
 * [Overview](../index.html?chapter=overview&locale=en-US)
 * [Installation](../index.html?chapter=installation&locale=en-US)
 * [Syntax](../index.html?chapter=syntax&locale=en-US)
+* [Crates](../index.html?chapter=crates&locale=en-US)
+* Assignment - Tools and Good Bones
+
+## Lesson 2 - Rust Basics
+
 * [Mutability](../index.html?chapter=mutability&locale=en-US)
 * [Basic types](../index.html?chapter=basic-types&locale=en-US)
 * [Data structures](../index.html?chapter=data-structures&locale=en-US)
 * [Functions](../index.html?chapter=functions&locale=en-US)
 * [Basic Generics](../index.html?chapter=generics-basics&locale=en-US)
+* Assignment - Collections and Persistence
+
+## TODO
+
 * [Match](../index.html?chapter=match&locale=en-US)
 * [Ownership](../index.html?chapter=ownership&locale=en-US)
 * [Borrowing](../index.html?chapter=borrowing&locale=en-US)
@@ -27,7 +40,6 @@
 * [Conversions](../index.html?chapter=conversion-patterns&locale=en-US)
 * [Closures](../index.html?chapter=closures&locale=en-US)
 * [Imports, Modules, Visibility](../index.html?chapter=imports-modules-and-visibility&locale=en-US)
-* [Crates](../index.html?chapter=crates&locale=en-US)
 * [libcore and libstd](../index.html?chapter=libcore-and-libstd&locale=en-US)
 * [The stdlib](../index.html?chapter=std-lib-tour&locale=en-US)
 * [Iterators again](../index.html?chapter=iterators-again&locale=en-US)
