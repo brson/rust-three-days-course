@@ -1,0 +1,320 @@
+# Overview
+[Table of Contents](toc/english.html)
+
+---
+
+TODOs
+
+- demo of gc vs raft
+  - ripgrep vs fuzzyfind (fzf)
+- TODO: talk about power of cargo
+- make sure we cover _all_ the differentiators
+
+---
+
+## Pre-talk
+
+- todo
+- mention runnable editable examples
+- play.rust-lang.org
+
+---
+
+## Overview
+
+---
+
+## A Little Bit of History
+
+-   Rust is roughly 10 years old
+-   An experimental project by Graydon Hoare
+-   Adopted by Mozilla
+-   Presented to the general public as version 0.4 in 2012
+-   Looked a bit Go-like back then
+
+---
+
+## Development
+
+-   Always together with a larger project (e.g. Servo)
+-   Early adoption of regular releases, deprecations and an RFC process
+-   Good software development methodologies
+-   "Things are not complete when there is nothing left to add, but when there is nothing left to take away."
+
+---
+
+## Release Method
+
+-   Nightly releases
+-   Every 6 weeks, the current nightly is promoted to beta
+-   After 6 weeks of testing, beta becomes stable
+-   Guaranteed backwards-compatibility
+-   Makes small iterations easier
+
+---
+
+## Philosophy
+
+-   Predictable runtime behaviour
+-   Supporting stable software development for programming at large
+-   Pragmatism and easy integration
+-   Approachable project
+
+---
+
+## The Three Words
+
+-   Safe
+-   Concurrent
+-   Fast
+
+---
+
+## Safe
+
+-   Rust is memory-safe
+-   No illegal memory access
+-   Deallocation is automated
+-   Warning: memory leaks are *safe* by that definition!
+
+---
+
+## Concurrent
+
+-   "Concurrency without fear"
+-   The type system detects concurrent access to data and requires synchronisation
+-   Also: Rust detects when unsynchronised access is safely possible!
+-   Protection from data races!
+
+---
+
+## Fast
+
+-   These properties are guaranteed at compile time and have no runtime cost!
+-   Optimizing compiler based on LLVM
+-   Features with runtime cost are explicit and hard to activate "by accident"
+-   Static dispatch per default
+
+---
+
+## Pragmatic (simplify wording)
+
+-   Sublanguage for unsafe memory access
+-   Great FFI support
+-   Great error messages by the compiler
+-   Rust gives support for many hard things and trusts you with the rest
+
+---
+
+## Language features (wrong title for this slide)
+
+
+-   Rust is an expression-based language. Each expression has a value, which can be assigned or returned.
+-   "Pay what you use": Rust has features with a runtime cost in an explicit and visible way. Features not used don't cost anything.
+-   Zero-cost abstractions
+
+
+
+
+
+
+
+---
+
+# Syntax
+
+---
+
+## TODO
+
+- slides for relevant beginner pingcap topics
+  - generics
+  - adts & match
+  - gc
+
+
+---
+
+Rust has a syntax designed to _look_ familiar to C and C++ programmers, the
+traditional systems programming languages.
+
+---
+
+## Basics
+
+<pre><code data-source="chapters/shared/code/syntax/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `struct`, `type`, and `enum`
+
+<pre><code data-source="chapters/shared/code/syntax/7.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+- TODO split this up
+- Use Option
+
+---
+
+## `if`
+
+<pre><code data-source="chapters/shared/code/syntax/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `if let`
+
+<pre><code data-source="chapters/shared/code/syntax/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+- TODO: use `value == Some(blah)`
+- TODO: use bound val
+
+---
+
+## `match`
+
+<pre><code data-source="chapters/shared/code/syntax/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `loop` and `while`
+
+<pre><code data-source="chapters/shared/code/syntax/5.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `for` and `while let`
+
+<pre><code data-source="chapters/shared/code/syntax/6.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## `impl` and `trait`
+
+- TODO: define Foo
+
+<pre><code data-source="chapters/shared/code/syntax/8.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Borrowing
+
+<pre><code data-source="chapters/shared/code/syntax/9.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+- Think hard about this
+
+---
+
+## Lifetimes
+
+`'foo` can be used to describe the lifetime of borrows.
+
+<pre><code data-source="chapters/shared/code/syntax/10.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+- TODO put this somewhere smarter
+
+---
+
+## Scopes
+
+Rust is block scoped. Scopes can return values.
+
+<pre><code data-source="chapters/shared/code/syntax/11.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Closures
+
+<pre><code data-source="chapters/shared/code/syntax/12.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+- TODO: speakernotes, mention distinguishing power of rust closures
+
+---
+
+## Generics
+
+- TODO make this example fit on slide
+
+<pre><code data-source="chapters/shared/code/syntax/13.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+Generally the `where` syntax is preferred.
+
+---
+
+## `use` and `mod`
+
+- TODO: don't foo::foo stutter
+
+<pre><code data-source="chapters/shared/code/syntax/14.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Attributes
+
+Rust attributes are used for a number of different things. There is a full list of attributes in the [reference](https://doc.rust-lang.org/reference/attributes.html).
+
+<pre><code data-source="chapters/shared/code/syntax/15.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## On Semicolons
+
+A line without a semi-colon implictly returns. Don't worry, the compiler will tell you if you forget it.
+
+<pre><code data-source="chapters/shared/code/syntax/16.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+- TODO: do we want to do this, how much to explain, not just for function returns
+
+---
+
+
+
+
+---
+
+## Mutability
+
+---
+
+Modern programming languages differ in their attitude towards data mutability.
+
+Where does Rust land?
+
+- TODO: say something better here, and speakernotes
+
+---
+
+## An Example
+
+<pre><code data-source="chapters/shared/code/mutability/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Correct
+
+<pre><code data-source="chapters/shared/code/mutability/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+In Rust data mutability must be declared.
+
+Mutability is always apparent from reading the code.
+
+- speakernote
+
+---
+
+Mutability is fundamental to Rust and is a common consideration.
+
+- speakernote
+
+---
+
+Mutability is a property of variables and bindings, not of the bound data!
+
+- speakernute
+
+---
+
+
+
+

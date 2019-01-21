@@ -1,8 +1,3 @@
-// Function declaration
-fn add_them(first: i32, second: i32) -> i32 {
-    first + second
-}
-
 fn main() {
     // Mutable variable
     let mut some_value = 1;
@@ -15,3 +10,9 @@ fn main() {
     // Macro, note the !
     println!("{}", some_value)
 }
+
+// Function declaration
+fn add_them(first: i32, second: i32) -> i32 {
+    first + second
+}
+

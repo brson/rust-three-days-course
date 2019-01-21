@@ -2,6 +2,11 @@
 
 * [Top](../index.html?locale=en-US)
 
+## PingCAP stuff
+
+* [Beginner](../index.html?chapter=pingcap-beginner&locale=en-US)
+* [Advaced](../index.html?chapter=pingcap-advanced&locale=en-US)
+
 ## Lesson 1 - A Whirlwind Start
 
 * [Overview](../index.html?chapter=overview&locale=en-US)
