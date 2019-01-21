@@ -24,7 +24,7 @@ fn change_code(filename: &str, locale: &str, extract: bool) {
         }
     }
 
-    let parser = Command::new("/usr/local/bin/pandoc")
+    let parser = Command::new("/home/brian/pandoc-2.5/bin/pandoc")
                          .arg(&filepath)
                          .arg("-w")
                          .arg("json")
@@ -32,6 +32,15 @@ fn change_code(filename: &str, locale: &str, extract: bool) {
                          .spawn()
                          .expect("failed to execute pandoc");
 
+    /*use std::io::Read;
+    let mut buf = vec![];
+     parser.stdout.unwrap().read_to_end(&mut buf);
+
+    let s = String::from_utf8_lossy(&buf);
+    println!("{}", s);
+
+    panic!();*/
+    
     let mut doc: Pandoc = serde_json::from_reader (parser.stdout.unwrap()).expect("unable to read JSON input");
 
     {
@@ -69,8 +78,8 @@ fn change_code(filename: &str, locale: &str, extract: bool) {
         }
     }
 
-    let cmd = Command::new("/usr/local/bin/pandoc")
-                         .args(&["-f", "json", "-w", "markdown_github", "--atx-headers", "-o", &filepath])
+    let cmd = Command::new("/home/brian/pandoc-2.5/bin/pandoc")
+                         .args(&["-f", "json", "-w", "gfm", "--atx-headers", "-o", &filepath])
                          .stdin(Stdio::piped())
                          .spawn()
                          .expect("failed to execute process");

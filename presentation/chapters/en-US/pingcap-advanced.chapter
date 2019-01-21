@@ -1,10 +1,264 @@
-# Overview
+# Advanced Rust
+
 [Table of Contents](toc/english.html)
 
 ---
 
-TODO
-- overflow
-- unit types
+todo
+
+https://github.com/rust-lang/rust/tree/b5f5a2715ed8685bc19fd589a23c7c658c2fe6bd
 
 ---
+
+## Pre-talk
+
+Note:
+
+- for people who know rust
+- topics related to tikv
+- speak up
+- we don’t know everything
+- examples on play.rust-lang.org
+
+---
+
+## Planned Topics
+
+TODO
+
+---
+
+## Potential *Other* Topics
+
+TODO
+
+---
+
+## Rust 2018
+
+TODO
+
+- dyn
+
+---
+
+## Error Handling
+
+- Crucial early decision - don't half-ass it
+- Surprisingly complex and flexible
+- When is it ok to `unwrap`?
+
+[The Book - Error Handling](https://doc.rust-lang.org/book/ch09-00-error-handling.html)
+
+[The Failure Book](https://rust-lang-nursery.github.io/failure/intro.html)
+
+Note:
+
+- opinions ahead
+- think about early
+- many evolving patterns
+- `unwrap` as “code smell”
+- The Book is a *starting point*
+  - need practical patterns
+
+---
+
+## How Does ‘?’ Work?
+
+[`Try trait`](https://doc.rust-lang.org/stable/src/core/ops/try.rs.html#17)
+[`Try::into_result`](https://doc.rust-lang.org/stable/std/ops/trait.Try.html#required-methods)
+[RFC 1859 - Try Trait](https://github.com/rust-lang/rfcs/blob/master/text/1859-try-trait.md)
+
+Note:
+
+- `?` works for `Option`
+
+---
+
+## Error Handling Patterns
+
+- Return `failure::Error` everywhere
+- Per-crate (or subsystem) enums / structs
+  - `failure`
+  - `quick_error!`
+- Preserving and adding to the “cause” chain
+- Strings as errors?
+
+Note:
+
+- patterns / antipatterns / examples
+- goals: boilerplate
+  - maintainability
+  - usability
+- backtraces
+
+---
+
+## `failure::Error` Everywhere
+
+Note:
+
+- `Error` generic error type
+- failure docs don't give much guidance
+
+---
+
+## Traits `Fail` vs `StdError`
+
+- Easy "cause" chaining
+- Backtrace capture
+- `Display + Send + Sync + 'static`
+- all compatible `StdError` implement `Fail`
+- `Fail` _does not_ implement `StdError`
+
+Note:
+
+- Fail intended as replacement for StdError
+- Compatibility methods to convert to/from StdError
+
+---
+
+## Error Handling Anti-Patterns
+
+- `panic::catch_unwind`
+- Hand-rolled enums
+- `error_chain!`
+- failing to propagate the chain of errors
+- `fn main() -> Result<...>`
+- Strings as errors
+
+Note:
+
+- main -> Result is for toy code
+- `failure` propagates errors
+
+---
+
+## Default Error Reporting
+
+```rust
+#[macro_use] extern crate failure;
+
+use failure::{Error, ResultExt};
+
+fn main() -> Result<(), Error> {
+    run_foo().context("foo failed")?;
+    Ok(())
+}
+
+fn run_foo() -> Result<(), Error> {
+    run_bar().context("bar failed")?;
+    Ok(())
+}
+
+fn run_bar() -> Result<(), Error> {
+    bail!("something really bad happened")
+}
+```
+
+Note:
+
+- failure crate not on play.rust-lang.org
+  - show results on slides
+- likewise for panics
+    - *this* is an appropriate place to catch panics
+
+---
+
+## Default Error Reporting
+
+```
+$ cargo run --bin main-result
+   Compiling advanced-experiments v0.1.0 (/home/brian/advanced-experiments)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.90s
+     Running `target/debug/main-result`
+Error: ErrorMessage { msg: "something really bad happened" }
+
+bar failed
+
+foo failed
+```
+
+Why? [`std::process::Termination`](https://doc.rust-lang.org/stable/std/process/trait.Termination.html#implementors)
+
+---
+
+## Custom Error Reporting
+
+```rust
+#[macro_use] extern crate failure;
+
+use failure::{Error, ResultExt};
+use std::process;
+
+fn main() {
+    if let Err(e) = run() {
+        println!("program failed: {}", e);
+        let num_causes = e.iter_causes().count();
+        for (i, cause) in e.iter_causes().enumerate() {
+            if num_causes != i + 1 {
+                println!("  caused by: {}", cause);
+            } else {
+                println!("  root cause: {}", cause);
+            }
+        }
+        process::exit(1);
+    }
+}
+
+fn run() -> Result<(), Error> {
+    run_foo().context("foo failed")?;
+    Ok(())
+}
+
+fn run_foo() -> Result<(), Error> {
+    run_bar().context("bar failed")?;
+    Ok(())
+}
+
+fn run_bar() -> Result<(), Error> {
+    bail!("something really bad happened")
+}
+```
+
+---
+
+## Custom Error Reporting
+
+```
+$ cargo run --bin main-result-better
+   Compiling advanced-experiments v0.1.0 (/home/brian/advanced-experiments)
+    Finished dev [unoptimized + debuginfo] target(s) in 1.01s
+     Running `target/debug/main-result-better`
+program failed: foo failed
+  caused by: bar failed
+  root cause: something really bad happened
+```
+
+---
+
+## What if `?` Doesn’t Work?
+
+---
+
+- rust 2018
+- overflow
+- refcell
+- lifetimes
+- entry
+- sized
+- sync/send - ask wenchen / breesewish
+  - arc auto-sync/send
+- error handling
+
+- specialization
+- heigher ranked trait bounds
+- rules of unsafe code!
+- trait bounds
+- impl trait
+- assoc types
+
+- advanced iterators
+- pinning / async / await
+- macros
+- unit types

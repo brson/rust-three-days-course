@@ -1,16 +1,8 @@
-#[derive(Debug)]
-struct Point {
-    x: i32,
-    y: i32
-}
-
-impl Point {
-    fn new(x: i32, y: i32) -> Point {
-        Point { x: x, y: y }
-    }
-}
-
 fn main() {
-    let point = Point::new(1,2);
-    println!("{:?}", point);
+    let v = vec![1,2,3];
+    let i = make_iter(&v);
+}
+
+fn make_iter<'a>(v: &'a Vec<u8>) -> impl Iterator<Item=u8> + 'a {
+    v.iter().map(|v| (*v)*2)
 }
