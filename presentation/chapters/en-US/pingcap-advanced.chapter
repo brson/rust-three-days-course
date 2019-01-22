@@ -39,6 +39,7 @@ TODO
 TODO
 
 - dyn
+- catch
 
 ---
 
@@ -46,7 +47,6 @@ TODO
 
 - Crucial early decision - don't half-ass it
 - Surprisingly complex and flexible
-- When is it ok to `unwrap`?
 
 [The Book - Error Handling](https://doc.rust-lang.org/book/ch09-00-error-handling.html)
 
@@ -60,18 +60,6 @@ Note:
 - `unwrap` as “code smell”
 - The Book is a *starting point*
   - need practical patterns
-
----
-
-## How Does ‘?’ Work?
-
-[`Try trait`](https://doc.rust-lang.org/stable/src/core/ops/try.rs.html#17)
-[`Try::into_result`](https://doc.rust-lang.org/stable/std/ops/trait.Try.html#required-methods)
-[RFC 1859 - Try Trait](https://github.com/rust-lang/rfcs/blob/master/text/1859-try-trait.md)
-
-Note:
-
-- `?` works for `Option`
 
 ---
 
@@ -94,15 +82,6 @@ Note:
 
 ---
 
-## `failure::Error` Everywhere
-
-Note:
-
-- `Error` generic error type
-- failure docs don't give much guidance
-
----
-
 ## Traits `Fail` vs `StdError`
 
 - Easy "cause" chaining
@@ -111,6 +90,10 @@ Note:
 - all compatible `StdError` implement `Fail`
 - `Fail` _does not_ implement `StdError`
 
+[`Fail`](https://docs.rs/failure/0.1.5/failure/trait.Fail.html)
+
+[`StdError`](https://doc.rust-lang.org/stable/std/error/trait.Error.html)
+
 Note:
 
 - Fail intended as replacement for StdError
@@ -118,13 +101,47 @@ Note:
 
 ---
 
+## `failure::Error` Everywhere 1
+
+TODO
+
+[`failure::Error`](https://docs.rs/failure/0.1.5/failure/struct.Error.html)
+
+Note:
+
+- `Error` generic error type
+- failure docs don't give much guidance
+
+---
+
+## `failure::Error` Everywhere 2
+
+
+
+---
+
+## Per-crate Enums
+
+TODO
+
+[`Error` + `ErrorKind`](https://rust-lang-nursery.github.io/failure/error-errorkind.html)
+
+---
+
+## "Cause" chaining
+
+TODO
+
+---
+
 ## Error Handling Anti-Patterns
 
 - `panic::catch_unwind`
-- Hand-rolled enums
+- Hand-rolled `Error/Fail` types
 - `error_chain!`
-- failing to propagate the chain of errors
+- throwing away errors / not chaining "causes"
 - `fn main() -> Result<...>`
+- When is it ok to `unwrap`?
 - Strings as errors
 
 Note:
@@ -234,6 +251,32 @@ program failed: foo failed
   caused by: bar failed
   root cause: something really bad happened
 ```
+---
+
+## How Does ‘?’ Work?
+
+```rust
+// Desugared `<expr>?`
+match Try::into_result(<expr>) {
+    Ok(val) => #[allow(unreachable_code)] val,
+    Err(err) => #[allow(unreachable_code)]
+        if enclosing_catch {
+            break 'catch_target Try::from_error(From::from(err)),
+        } else {
+            return Try::from_error(From::from(err)),
+        }
+}
+```
+
+[`Try trait`](https://doc.rust-lang.org/stable/src/core/ops/try.rs.html#17)
+
+[`Try desugaring in rustc`](https://github.com/rust-lang/rust/blob/b5f5a2715ed8685bc19fd589a23c7c658c2fe6bd/src/librustc/hir/lowering.rs#L4420)
+
+[RFC 1859 - Try Trait](https://github.com/rust-lang/rfcs/blob/master/text/1859-try-trait.md)
+
+Note:
+
+- `?` works for `Option`
 
 ---
 
