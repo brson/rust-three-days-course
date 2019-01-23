@@ -1,4 +1,4 @@
-# Overview
+# Beginner Overview
 [Table of Contents](toc/english.html)
 
 ---
@@ -43,88 +43,83 @@ Note:
 
 ## Development
 
--   Always together with a larger project (e.g. Servo)
--   Early adoption of regular releases, deprecations and an RFC process
--   Good software development methodologies
--   "Things are not complete when there is nothing left to add, but when there is nothing left to take away."
+- Always together with a larger project (e.g. Servo)
+- Early adoption of regular releases, deprecations and an RFC process
+- Good software development methodologies
+- "Things are not complete when there is nothing left to add, but when there is nothing left to take away."
 
 ---
 
 ## Release Method
 
--   Nightly releases
--   Every 6 weeks, the current nightly is promoted to beta
--   After 6 weeks of testing, beta becomes stable
--   Guaranteed backwards-compatibility
--   Makes small iterations easier
+- Nightly releases
+- Every 6 weeks, the current nightly is promoted to beta
+- After 6 weeks of testing, beta becomes stable
+- Guaranteed backwards-compatibility
+- Makes small iterations easier
 
 ---
 
 ## Philosophy
 
--   Predictable runtime behaviour
--   Supporting stable software development for programming at large
--   Pragmatism and easy integration
--   Approachable project
+- Predictable runtime behaviour
+- Support stable software development for large projects
+- Pragmatic
+- Easy Integration
+- Approachable
 
 ---
 
 ## The Three Words
 
--   Safe
--   Concurrent
--   Fast
+- Safe
+- Concurrent
+- Fast
 
 ---
 
 ## Safe
 
--   Rust is memory-safe
--   No illegal memory access
--   Deallocation is automated
--   Warning: memory leaks are *safe* by that definition!
+Memory-safe means:
+
+- No illegal memory access
+- Deallocation is automated
+
+**Warning:** memory leaks are *safe* by that definition!
 
 ---
 
 ## Concurrent
 
--   "Concurrency without fear"
--   The type system detects concurrent access to data and requires synchronisation
--   Also: Rust detects when unsynchronised access is safely possible!
--   Protection from data races!
+"Concurrency without fear"
+- Detects concurrent access to data and requires synchronisation
+- Detects when unsynchronised access is safely possible!
+- Protects from data races!
 
 ---
 
 ## Fast
 
--   These properties are guaranteed at compile time and have no runtime cost!
--   Optimizing compiler based on LLVM
--   Features with runtime cost are explicit and hard to activate "by accident"
--   Static dispatch per default
+- Many properties are guaranteed at compile time and have no runtime cost!
+- Optimizing compiler based on LLVM
+- Features with runtime cost are explicit
+- Static dispatch by default
 
 ---
 
-## Pragmatic (simplify wording)
+## Practical
 
--   Sublanguage for unsafe memory access
--   Great FFI support
--   Great error messages by the compiler
--   Rust gives support for many hard things and trusts you with the rest
+- Opt-in unsafe memory access
+- Great FFI support
+- Understandable error messages by the compiler
+- Comprehensive documentation you can trust
 
 ---
 
-## Language features (wrong title for this slide)
+## Lean
 
-
--   Rust is an expression-based language. Each expression has a value, which can be assigned or returned.
--   "Pay what you use": Rust has features with a runtime cost in an explicit and visible way. Features not used don't cost anything.
--   Zero-cost abstractions
-
-
-
-
-
-
+- "Pay what you use" features
+- Focus on Zero-cost abstractions
 
 ---
 
@@ -149,114 +144,99 @@ traditional systems programming languages.
 
 ## Basics
 
-<pre><code data-source="chapters/shared/code/syntax/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
 ## Tuples
 
-<pre><code data-source="chapters/shared/code/data-structures/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
-## `struct`, `type`, and `enum`
+## Structures
 
-<pre><code data-source="chapters/shared/code/syntax/7.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
-- TODO split this up
-- Use Option
-- show tuple structs
-- remove unit structs
-- skip typedefs
-- show field access / ctor
+<pre><code data-source="chapters/shared/code/pingcap-beginner/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
-TODO slide about null / option
+## Enums
+
+<pre><code data-source="chapters/shared/code/pingcap-beginner/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Null
+
+We don't have it.
+
+There is a more sophisticated `Option` available to you.
+
+It's better. Promise.
 
 ---
 
 ## `if`
 
-<pre><code data-source="chapters/shared/code/syntax/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/5.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
 ## `if let`
 
-<pre><code data-source="chapters/shared/code/syntax/4.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
-- TODO: use `value == Some(blah)`
-- TODO: use bound val
+<pre><code data-source="chapters/shared/code/pingcap-beginner/6.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
 ## `match`
 
-<pre><code data-source="chapters/shared/code/syntax/3.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/7.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
 ## `loop` and `while`
 
-<pre><code data-source="chapters/shared/code/syntax/5.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/8.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
 ## `for` and `while let`
 
-<pre><code data-source="chapters/shared/code/syntax/6.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/9.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
 ## `impl` and `trait`
 
-- TODO: define Foo
-- speakernote 'new' pattern vs constructors
-
-<pre><code data-source="chapters/shared/code/syntax/8.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
----
-
-## Borrowing
-
-<pre><code data-source="chapters/shared/code/syntax/9.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
-- Think hard about this
-
----
-
-## Lifetimes
-
-`'foo` can be used to describe the lifetime of borrows.
-
-<pre><code data-source="chapters/shared/code/syntax/10.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
-- TODO put this somewhere smarter
+<pre><code data-source="chapters/shared/code/pingcap-beginner/10.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
 ## Scopes
 
-Rust is block scoped. Scopes can return values.
+Rust is block scoped. Blocks can return values.
 
-<pre><code data-source="chapters/shared/code/syntax/11.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/11.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
 ## Closures
 
-<pre><code data-source="chapters/shared/code/syntax/12.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/12.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
-- TODO: speakernotes, mention distinguishing power of rust closures
+---
+
+## Borrowing
+
+Or *references*.
+
+<pre><code data-source="chapters/shared/code/pingcap-beginner/13.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
 ## Generics
 
-- TODO make this example fit on slide
-
-<pre><code data-source="chapters/shared/code/syntax/13.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/14.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 Generally the `where` syntax is preferred.
 
@@ -264,9 +244,7 @@ Generally the `where` syntax is preferred.
 
 ## `use` and `mod`
 
-- TODO: don't foo::foo stutter
-
-<pre><code data-source="chapters/shared/code/syntax/14.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/15.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
@@ -274,20 +252,7 @@ Generally the `where` syntax is preferred.
 
 Rust attributes are used for a number of different things. There is a full list of attributes in the [reference](https://doc.rust-lang.org/reference/attributes.html).
 
-<pre><code data-source="chapters/shared/code/syntax/15.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
----
-
-## On Semicolons
-
-A line without a semi-colon implictly returns. Don't worry, the compiler will tell you if you forget it.
-
-<pre><code data-source="chapters/shared/code/syntax/16.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
-- TODO: do we want to do this, how much to explain, not just for function returns
-
-
-
+<pre><code data-source="chapters/shared/code/pingcap-beginner/16.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
@@ -295,23 +260,23 @@ A line without a semi-colon implictly returns. Don't worry, the compiler will te
 
 ---
 
-Modern programming languages differ in their attitude towards data mutability.
+Rust uses opt-in mutability.
 
-Where does Rust land?
-
-- TODO: say something better here, and speakernotes
+If something is mutable, you must tell it.
 
 ---
 
 ## An Example
 
-<pre><code data-source="chapters/shared/code/mutability/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/17.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+This cannot work. It is not mutable.
 
 ---
 
 ## Correct
 
-<pre><code data-source="chapters/shared/code/mutability/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/18.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
@@ -319,28 +284,17 @@ In Rust data mutability must be declared.
 
 Mutability is always apparent from reading the code.
 
-- speakernote
-
----
-
-Mutability is fundamental to Rust and is a common consideration.
-
-- speakernote
-
----
-
-Mutability is a property of variables and bindings, not of the bound data!
-
-- speakernute
-
-
-
-
-
-
 ---
 
 ## Basic Types
+
+---
+
+## Booleans
+
+Boringly familiar.
+
+<pre><code data-source="chapters/shared/code/pingcap-beginner/19.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
@@ -348,24 +302,31 @@ Mutability is a property of variables and bindings, not of the bound data!
 
 Rust comes with all standard int types, with and without sign
 
--   i8, u8
--   i16, u16
--   i32, u32
--   i64, u64
--   i128, u128
--   isize, usize
+- i8, u8
+- i16, u16
+- i32 **(default)**, u32
+- i64, u64
+- i128, u128
+- isize, usize
 
-- todo speakernote about default ints
+`isize` and `usize` are architecture dependent.
 
 ---
 
 ## Casts
 
-Casts between number are possible, *also shortening casts*:
+**Can** lose information:
 
-<pre><code data-source="chapters/shared/code/basic-types/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/20.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
-- TODO think harder about this slide
+---
+
+## Casts
+
+**Cannot** lose information:
+
+<pre><code data-source="chapters/shared/code/pingcap-beginner/21.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
 
 ---
 
@@ -373,23 +334,9 @@ Casts between number are possible, *also shortening casts*:
 
 Rust also comes with floats of all standard sizes: f32, f64
 
-<pre><code data-source="chapters/shared/code/basic-types/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/22.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
-- TODO speakernote no default float
-
----
-
-## The Unit Type
-
-Expressions without a specific return value return the unit type `()`.
-
-<pre><code data-source="chapters/shared/code/basic-types/5.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
-
-
-
-
-
+There is no default float.
 
 
 ---
@@ -404,12 +351,7 @@ Generics are everywhere. You will use them frequently.
 
 ## Generic Functions
 
-Generic functions have type parameters.
-- todo fix syntax highlighting
-- speakernote explain type parameters lightly
-- speakernote can't do much with T because it 
-
-<pre><code data-source="chapters/shared/code/functions/4.rs" data-trim="hljs rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/23.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
@@ -419,15 +361,15 @@ Generic functions can also have bounds.
 
 These are equivalent:
 
-<pre><code data-source="chapters/shared/code/functions/5.rs" data-trim="hljs rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/24.rs" data-trim="hljs rust"></code></pre>
 
-TODO speakernote Debug and println
+`where` is preferred for complex generics.
 
 ---
 
 ## Generic Structs
 
-<pre><code data-source="chapters/shared/code/generics-basics/1.rs" data-trim="hljs rust"></code></pre>
+<pre><code data-source="chapters/shared/code/pingcap-beginner/25.rs" data-trim="hljs rust"></code></pre>
 
 ---
 
@@ -437,18 +379,13 @@ Rust finds the types of all variables and generics if it has sufficient informat
 
 This only applies *inside* of function limits.
 
-Signatures must always be fully entered.
+Function Signatures must be complete.
 
 ---
 
 ## Generic Enums
 
-- todo use Option
-
-<pre><code data-source="chapters/shared/code/generics-basics/2.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
-
-
+<pre><code data-source="chapters/shared/code/pingcap-beginner/26.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
@@ -458,19 +395,22 @@ Signatures must always be fully entered.
 
 ## Vectors ("arrays")
 
-TODO
+<pre><code data-source="chapters/shared/code/pingcap-beginner/27.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
 ## Hash Maps
 
-TODO
+<pre><code data-source="chapters/shared/code/pingcap-beginner/28.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
 ---
 
 ## Result
 
-TODO
+<pre><code data-source="chapters/shared/code/pingcap-beginner/29.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
+---
 
+## `Ok(go_write_rust)`
 
+Thank you!
