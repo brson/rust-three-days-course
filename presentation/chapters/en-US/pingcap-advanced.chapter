@@ -8,6 +8,8 @@ todo
 
 https://github.com/rust-lang/rust/tree/b5f5a2715ed8685bc19fd589a23c7c658c2fe6bd
 
+- display shortened links
+
 ---
 
 ## Pre-talk
@@ -34,12 +36,49 @@ TODO
 
 ---
 
-## Rust 2018
+## Rust 2018 Edition
 
-TODO
+[Rust 2018 Guide](https://doc.rust-lang.org/book/)
 
-- dyn
-- catch
+---
+
+What is the purpose of editions?
+
+Note:
+
+- Break compat, while maintaining compat
+- Establish modern idioms
+- Marketing
+- "Official" purpose of Rust 2018 in guide
+- Unique upgrade scheme
+
+---
+
+## 2018 Idioms
+
+---
+
+## What is Actually New?
+
+- "uniform paths"
+
+Note:
+
+- uniform paths in tikv upgrade / rustfix
+
+---
+
+## Uniform Paths
+
+[Examples](https://github.com/brson/advanced-experiments/blob/master/src/bin/paths.rs)
+
+[2018 Guide - Paths](https://rust-lang-nursery.github.io/edition-guide/rust-2018/module-system/path-clarity.html)
+
+- Guide is fairly incorrect about paths in 2018 (edition-guide#139)
+
+Note:
+
+- docs are _incorrect_ about "must begin with crate name"
 
 ---
 
@@ -55,6 +94,7 @@ TODO
 Note:
 
 - opinions ahead
+- Rust error handling is great -ish
 - think about early
 - many evolving patterns
 - `unwrap` as “code smell”
@@ -152,6 +192,8 @@ Note:
 ---
 
 ## Default Error Reporting
+
+TODO remove these sections?
 
 ```rust
 #[macro_use] extern crate failure;
