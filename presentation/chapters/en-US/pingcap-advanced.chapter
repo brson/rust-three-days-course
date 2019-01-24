@@ -36,6 +36,7 @@ Note:
 
 - Rust 2018
 - Overflow
+- RefCell?
 - Error handling
 - Tour of historic Rust?
 
@@ -43,27 +44,10 @@ Note:
 
 ## Potential *Other* Topics
 
-- rust 2018
-- overflow
-- refcell
-- lifetimes
-- entry
-- sized
-- sync/send - ask wenchen / breesewish
-  - arc auto-sync/send
-- error handling
-
-- specialization
-- heigher ranked trait bounds
-- rules of unsafe code!
-- trait bounds
-- impl trait
-- assoc types
-
-- advanced iterators
-- pinning / async / await
-- macros
-- unit types
+refcell, lifetimes, entry, sized, sync/send, specialization,
+heigher ranked trait bounds, rules of unsafe code,
+trait bounds, impl trait, assoc types, advanced iterators
+pinning / async / await, macros, unit types
 
 ---
 
@@ -83,13 +67,14 @@ Note:
 
 ---
 
-## 2018 Idioms
-
----
-
 ## What is Actually New?
 
 - "path clarity" / "uniform paths"
+- Non-linear lifetimes
+
+... and a number if minor things.
+
+https://tinyurl.com/ydz4rjgx
 
 Note:
 
@@ -101,13 +86,46 @@ Note:
 
 Examples - https://tinyurl.com/yd333cm9
 
-Guide is fairly incorrect about paths in 2018 (edition-guide#139)
+Guide is somewhat incorrect about paths in 2018 (edition-guide#139)
 
 ---
 
-## Overflow
+## Overflow 1
 
-TODO
+```
+fn main() {
+    let a = 255u8;
+    let a = a + 1;
+	black_box(a);
+}
+```
+
+---
+
+## Non-linear lifetimes
+
+---
+
+## Overflow 2
+
+    thread 'main' panicked at 'attempt to add with overflow', ../src/bin/overflow.rs:3:13
+    note: Run with `RUST_BACKTRACE=1` for a backtrace.
+
+Why does rust treat overflow like this?
+
+---
+
+## Overflow 3
+
+```
+fn main() {
+    let a = 255u8;
+    let a = a.wrapping_add(1);
+	black_box(a);
+}
+```
+
+Other options - https://tinyurl.com/y8wgeg56
 
 ---
 
@@ -172,11 +190,23 @@ Note:
 
 ---
 
-## `failure::Error` Everywhere 1
+## `failure::Error` Everywhere
 
-TODO
+```rust
+use failure::{Error, err_msg};
 
-`failure::Error` - https://docs.rs/failure/0.1.5/failure/struct.Error.html
+fn main() -> Result<(), Error> {
+    foo()?;
+    // ...
+    Ok(())
+}
+
+fn foo() -> Result<(), Error> {
+    Err(err_msg("bad!"))
+}
+```
+
+`failure::Error` - https://tinyurl.com/ybjuuuer
 
 Note:
 
@@ -185,23 +215,84 @@ Note:
 
 ---
 
-## `failure::Error` Everywhere 2
+## `failure::Error` Everywhere
 
+```
+#[macro_use]
+extern crate failure_derive;
+use failure::{Error, err_msg};
+use std::fmt;
 
+fn main() -> Result<(), Error> {
+    foo()?;
+    // ...
+    Ok(())
+}
+
+#[derive(Fail, Debug)]
+struct Bad;
+impl fmt::Display for Bad { ... }
+
+fn foo() -> Result<(), Error> { Err(Bad) }
+```
+
+---
+
+## `failure::Error` Everywhere
+
+```
+use failure::Error;
+use std::io;
+
+fn main() -> Result<(), Error> {
+    foo()?;
+    // ...
+    Ok(())
+}
+
+fn foo() -> Result<(), Error> {
+    Err(io::Error::from(io::ErrorKind::NotFound))?;
+    Ok(())
+}
+```
 
 ---
 
 ## Per-crate Enums
 
-TODO
-
-[`Error` + `ErrorKind`](https://rust-lang-nursery.github.io/failure/error-errorkind.html)
+`Error` + `ErrorKind` - https://tinyurl.com/y923nsr5
 
 ---
 
-## "Cause" chaining
+## "Cause" Chaining
 
-TODO
+```
+pub trait Error: Debug + Display {
+    fn cause(&self) -> Option<&dyn Error> {
+        self.source()
+    }
+
+    ...
+}
+```
+
+---
+
+## "Cause" Chaining
+
+```
+use failure::{Error, ResultExt};
+
+fn main() -> Result<(), Error> {
+    run_foo().context("foo failed")?;
+    Ok(())
+}
+
+fn run_foo() -> Result<(), Error> {
+   bail!("something bad happened");
+   Ok(())
+}
+```
 
 ---
 
@@ -223,8 +314,6 @@ Note:
 ---
 
 ## Default Error Reporting
-
-TODO remove these sections?
 
 ```rust
 #[macro_use] extern crate failure;
@@ -269,7 +358,17 @@ bar failed
 foo failed
 ```
 
-Why? [`std::process::Termination`](https://doc.rust-lang.org/stable/std/process/trait.Termination.html#implementors)
+Why?
+
+---
+
+## Termination
+
+API docs - https://tinyurl.com/ydhdjxfk
+
+```
+impl<E: Debug> Termination for Result<(), E> { ... }
+```
 
 ---
 
