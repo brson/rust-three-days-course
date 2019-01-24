@@ -34,19 +34,42 @@ Note:
 
 ## Planned Topics
 
-TODO
+- Rust 2018
+- Overflow
+- Error handling
+- Tour of historic Rust?
 
 ---
 
 ## Potential *Other* Topics
 
-TODO
+- rust 2018
+- overflow
+- refcell
+- lifetimes
+- entry
+- sized
+- sync/send - ask wenchen / breesewish
+  - arc auto-sync/send
+- error handling
+
+- specialization
+- heigher ranked trait bounds
+- rules of unsafe code!
+- trait bounds
+- impl trait
+- assoc types
+
+- advanced iterators
+- pinning / async / await
+- macros
+- unit types
 
 ---
 
 ## Rust 2018 Edition
 
-[Rust 2018 Guide](https://doc.rust-lang.org/book/)
+Rust 2018 Guide - https://doc.rust-lang.org/stable/edition-guide/
 
 - What is the purpose of editions?
 
@@ -76,27 +99,28 @@ Note:
 
 ## Uniform Paths
 
-[Examples](https://github.com/brson/advanced-experiments/blob/master/src/bin/paths.rs)
+Examples - https://tinyurl.com/yd333cm9
 
-[2018 Guide - Paths](https://rust-lang-nursery.github.io/edition-guide/rust-2018/module-system/path-clarity.html)
+Guide is fairly incorrect about paths in 2018 (edition-guide#139)
 
-- Guide is fairly incorrect about paths in 2018 (edition-guide#139)
+---
 
-Note:
+## Overflow
 
-- docs are _incorrect_ about "must begin with crate name"
-- bugs
+TODO
 
 ---
 
 ## Error Handling
 
-- Crucial early decision - don't half-ass it
+- Crucial early decision
 - Surprisingly complex and flexible
+- But powerful, reliable, and ergonomic  
+  (when used appropriately)
 
-[The Book - Error Handling](https://doc.rust-lang.org/book/ch09-00-error-handling.html)
+The Book - Error Handling - https://tinyurl.com/y92hczmh
 
-[The Failure Book](https://rust-lang-nursery.github.io/failure/intro.html)
+The Failure Book - https://tinyurl.com/y8xnoqmq
 
 Note:
 
@@ -137,9 +161,9 @@ Note:
 - all compatible `StdError` implement `Fail`
 - `Fail` _does not_ implement `StdError`
 
-[`Fail`](https://docs.rs/failure/0.1.5/failure/trait.Fail.html)
+`Fail` - https://tinyurl.com/ybyrhynh
 
-[`StdError`](https://doc.rust-lang.org/stable/std/error/trait.Error.html)
+`StdError` - https://tinyurl.com/yau24b44
 
 Note:
 
@@ -152,7 +176,7 @@ Note:
 
 TODO
 
-[`failure::Error`](https://docs.rs/failure/0.1.5/failure/struct.Error.html)
+`failure::Error` - https://docs.rs/failure/0.1.5/failure/struct.Error.html
 
 Note:
 
@@ -334,6 +358,18 @@ Note:
 
 ---
 
+## Historic Rust
+
+http://brson.github.io/archaea/
+
+- http://brson.github.io/archaea/rec.html
+- http://brson.github.io/archaea/vec.html
+- http://brson.github.io/archaea/linear-for-loop.html
+- http://brson.github.io/archaea/spawn-fn.html
+- http://brson.github.io/archaea/tag.html
+
+<!--
+
 - rust 2018
 - overflow
 - refcell
@@ -355,3 +391,5 @@ Note:
 - pinning / async / await
 - macros
 - unit types
+
+-->
