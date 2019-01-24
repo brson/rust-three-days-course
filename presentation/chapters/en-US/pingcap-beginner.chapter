@@ -138,48 +138,6 @@ Note:
 
 ---
 
-## Rust's Influences
-
-- ML
-- Haskell
-- C++
-- Scala
-- Ruby
-- Go?
-- Python
-
-Note:
-
-- ask graydon
-- Scala - what _not_ to do
-- ML - functional / ADTs
-- Haskell / Scala - typeclasses
-- C++ - syntax, compile / runtime model, governance
-- Ruby - iterators
-  - cargo: bundler -> cargo -> yarn
-  - personalities
-- Go - parallel evolution, governance
-- Python - community, RFC
-
----
-
-## Rust's Influence
-
-- Proven practicality of "linear" type systems (ownership)
-- Proven practicality of "region" analysis (borrowwing)
-- Code of conduct
-- RFC process
-- This Week in Rust
-- Compiler error messages
-- C++ standards, Swift, Elm
-
-Note:
-
-- cyclone
-- RFC and swift
-- swift and C++
-- elm - Result
-
 ## Philosophy
 
 - Composition over inheritance
@@ -209,10 +167,14 @@ Note:
 Memory-safe means:
 
 - No illegal memory access
-  - No crashes (segmentation faults)
+- Thus no crashes (segmentation faults)
 - Deallocation is automated
 
 **Warning:** memory leaks are *safe* by that definition!
+
+Note:
+
+- use after free, out of bounds reads and writes
 
 ---
 
@@ -220,10 +182,16 @@ Memory-safe means:
 
 "Fearless concurrency"
 
-- Detects concurrent access to data and requires synchronisation
-- Detects when unsynchronised access is safely possible!
-- Protects from data races!
-- Static guarantees
+- Concurrent write access to data requires synchronisation
+- Concurrent read access to data is generally allowed
+- Protection from data races
+- __Statically guaranteed__
+
+Note:
+
+- memory safety
+- can other languages do this?
+- how? in a minute
 
 ---
 
@@ -253,9 +221,66 @@ Note:
 
 ---
 
-# Syntax
+## The Magic
+
+- The problem: aliasing and mutability
+- The solution: ownership and borrowing
+
+Note:
+
+- can't describe in detail
 
 ---
+
+## Rust's Influences
+
+- ML
+- Haskell
+- C++
+- Scala
+- Ruby
+- Go?
+- Python
+
+Note:
+
+- ask graydon
+- Scala - what _not_ to do
+- ML - functional / ADTs
+- Haskell / Scala - typeclasses
+- C++ - syntax, compile / runtime model, governance
+- Ruby - iterators
+  - cargo: bundler -> cargo -> yarn
+  - personalities
+- Go - parallel evolution, governance
+- Python - community, RFC
+
+---
+
+## Rust's Influence
+
+- Proven practicality of "linear" type systems (ownership)
+- Proven practicality of "region" analysis (borrowwing)
+- C++, Swift, Elm
+- Code of conduct
+- RFC process
+- This Week in Rust
+- Compiler error messages
+
+Note:
+
+- my opinion
+- cyclone
+- RFC and swift
+- swift and C++
+- elm - Result
+- others?
+
+---
+
+# Syntax
+
+<!--
 
 ## TODO
 
@@ -264,6 +289,7 @@ Note:
   - adts & match
   - gc
 
+-->
 
 ---
 
