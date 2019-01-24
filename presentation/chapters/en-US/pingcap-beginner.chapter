@@ -36,15 +36,15 @@ Note:
 
 ---
 
-## Introductions
+# Introductions
 
 ---
 
-## Background
+# Background
 
 Note:
 
-- about history and philosophy
+- this is about history and philosophy
 - personal perspective and history
 
 ---
@@ -412,7 +412,7 @@ Rust attributes are used for a number of different things. There is a full list 
 
 ---
 
-## Mutability
+# Mutability
 
 ---
 
@@ -497,7 +497,7 @@ There is no default float.
 
 ---
 
-## Basic Generics
+# Basic Generics
 
 ---
 
@@ -545,7 +545,7 @@ Function Signatures must be complete.
 
 ---
 
-## Important Rust Types
+# Important Rust Types
 
 ---
 

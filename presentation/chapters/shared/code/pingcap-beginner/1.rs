@@ -1,4 +1,3 @@
-
 fn main() {
     // Mutable variable
     let mut some_value = 1;
