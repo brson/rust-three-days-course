@@ -30,10 +30,9 @@ Note:
   - speak up
   - need help translating
 - disorganized
-- audience
+- audience - non-programmers, go-programmers, rust-programmers
 - two segments - beginner and advaced
 - examples are runnable in play.rust-lang.org
-- a lot of my personal perspective and history
 
 ---
 
@@ -46,12 +45,13 @@ Note:
 Note:
 
 - about history and philosophy
+- personal perspective and history
 
 ---
 
 ## Why Rust?
 
-- _Very high performance_ - without crashes
+- _Very high performance_ - **without crashes**
 - Predictable runtime behaviour
 - No garbage collection, no runtime
 - Good support for "programming in the large"
@@ -60,8 +60,8 @@ Note:
 
 Note:
 
-- highly reliable
 - perf vs C/C++
+- highly reliable
 - Rust's main competitors are C and C++
 - programming in the large - cargo
 - ~80 known platforms
