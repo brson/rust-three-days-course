@@ -3,26 +3,7 @@
 
 ---
 
-TODOs
-
-- demo of gc vs raft
-  - ripgrep vs fuzzyfind (fzf)
-- TODO: talk about power of cargo
-- make sure we cover _all_ the differentiators
-- strong typing vs weak typing vs dynamic typing
-- add overview subject of oo vs capabilities, composition
-
----
-
-## Pre-talk
-
-- todo
-- mention runnable editable examples
-- play.rust-lang.org
-
----
-
-## Overview
+# Background
 
 ---
 
@@ -31,8 +12,8 @@ TODOs
 -   Rust is roughly 10 years old
 -   An experimental project by Graydon Hoare
 -   Adopted by Mozilla in 2010
--   0.1 in 2012, 1.0 in 2015
 -   Looked a bit Go-like back then
+-   0.1 in 2012, 1.0 in 2015
 
 Note:
 
@@ -44,9 +25,11 @@ Note:
 ## Development
 
 - Always together with a larger project (e.g. Servo)
-- Early adoption of regular releases, deprecations and an RFC process
-- Good software development methodologies
-- "Things are not complete when there is nothing left to add, but when there is nothing left to take away."
+- Early adoption of regular releases
+- RFC driven development
+- Follow good software engineering practice
+
+"Things are not complete when there is nothing left to add, but when there is nothing left to take away."
 
 ---
 
@@ -55,18 +38,29 @@ Note:
 - Nightly releases
 - Every 6 weeks, the current nightly is promoted to beta
 - After 6 weeks of testing, beta becomes stable
-- Guaranteed backwards-compatibility
-- Makes small iterations easier
+- Strong compatability Guarantees
+- Small iterations over large changes
 
 ---
 
 ## Philosophy
 
 - Predictable runtime behaviour
-- Support stable software development for large projects
-- Pragmatic
-- Easy Integration
+- No garbage collection
+- Good support for "programming in the large"
+- Practical
+- Easy to integrate
 - Approachable
+
+---
+
+## Philosophy
+
+- Composition over inheritance
+- Express **capabilities**, not hierarchies
+- Strongly typed, no duck/weak typing
+- Robust package management
+- Semantic versioning
 
 ---
 
