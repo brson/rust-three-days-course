@@ -104,6 +104,18 @@ fn main() {
 
 ## Non-linear lifetimes
 
+```rust
+use std::collections::HashMap;
+
+fn main() {
+    let mut hash = HashMap::new();
+    hash.insert(1, 2);
+    let val = hash.get_mut(&1).unwrap();
+    *val += 1;
+    hash.contains_key(&1);
+}
+```
+
 ---
 
 ## Overflow 2
