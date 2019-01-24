@@ -1,8 +1,10 @@
-# Advanced Rust
+<!--# Advanced Rust
 
 [Table of Contents](toc/english.html)
 
----
+-->
+
+<!--
 
 todo
 
@@ -10,9 +12,15 @@ https://github.com/rust-lang/rust/tree/b5f5a2715ed8685bc19fd589a23c7c658c2fe6bd
 
 - display shortened links
 
----
+-->
 
-## Pre-talk
+## Rust / PingCAP 2
+
+<br>
+
+Beginner slides - https://tinyurl.com/ya77jwbb
+
+__Advanced slides__ - https://tinyurl.com/yar832fw
 
 Note:
 
@@ -40,9 +48,7 @@ TODO
 
 [Rust 2018 Guide](https://doc.rust-lang.org/book/)
 
----
-
-What is the purpose of editions?
+- What is the purpose of editions?
 
 Note:
 
@@ -60,7 +66,7 @@ Note:
 
 ## What is Actually New?
 
-- "uniform paths"
+- "path clarity" / "uniform paths"
 
 Note:
 
@@ -79,6 +85,7 @@ Note:
 Note:
 
 - docs are _incorrect_ about "must begin with crate name"
+- bugs
 
 ---
 

@@ -1,35 +1,125 @@
-# Beginner Overview
+<!--# Beginner Overview
 [Table of Contents](toc/english.html)
+-->
+
+<!--
+
+TODOs
+
+- demo of gc vs raft
+  - ripgrep vs fuzzyfind (fzf)
+- TODO: talk about power of cargo
+- make sure we cover _all_ the differentiators
+- strong typing vs weak typing vs dynamic typing
+- add overview subject of oo vs capabilities, composition
+
+-->
+
+## Rust / PingCAP 1
+
+<br>
+
+__Beginner slides__ - https://tinyurl.com/ya77jwbb
+
+Advanced slides - https://tinyurl.com/yar832fw
+
+Note:
+
+- thanks
+- speak slowly and simply
+  - speak up
+  - need help translating
+- disorganized
+- audience
+- two segments - beginner and advaced
+- examples are runnable in play.rust-lang.org
+- a lot of my personal perspective and history
 
 ---
 
-# Background
+## Introductions
+
+---
+
+## Background
+
+Note:
+
+- about history and philosophy
+
+---
+
+## Why Rust?
+
+- _Very high performance_ - without crashes
+- Predictable runtime behaviour
+- No garbage collection, no runtime
+- Good support for "programming in the large"
+- Easy to integrate (interoperability)
+- Portability - https://tinyurl.com/zvmzllq
+
+Note:
+
+- highly reliable
+- perf vs C/C++
+- Rust's main competitors are C and C++
+- programming in the large - cargo
+- ~80 known platforms
 
 ---
 
 ## A Little Bit of History
 
--   Rust is roughly 10 years old
--   An experimental project by Graydon Hoare
+-   Rust is roughly 12 years old
+-   An experimental project by Graydon Hoare, 2006
 -   Adopted by Mozilla in 2010
--   Looked a bit Go-like back then
 -   0.1 in 2012, 1.0 in 2015
+-   Early language _very_ different from today
+-   Changes in the community
 
 Note:
 
-- personal history
-  - TODO outline this
+- say a little about graydon
+- why was it created?
+- how is it being used today?
+  - firefox, facebook, google, dropbox
+- how was it like go?
+- show the evolution of rust later
+
+---
+
+## Philosophy
+
+- Practicality
+- Memory-safety
+- Community first
+- Later: predictable runtime behavior
+- Later: interoperability
+- Later: portability
+
+Note:
+
+- rust's philosophy changed over time
+- practicality?
+- talk about community strategy
 
 ---
 
 ## Development
 
-- Always together with a larger project (e.g. Servo)
-- Early adoption of regular releases
-- RFC driven development
-- Follow good software engineering practice
+- Co-developed with its use case (Servo)
+- Rapid evolution, integration and releases
+- Community-oriented RFC process
+- Extraordinary community engagement
+- Best open source development / government practices
 
 "Things are not complete when there is nothing left to add, but when there is nothing left to take away."
+
+Note:
+
+- what is servo?
+- co-evolution
+- talk about community evolution
 
 ---
 
@@ -38,21 +128,57 @@ Note:
 - Nightly releases
 - Every 6 weeks, the current nightly is promoted to beta
 - After 6 weeks of testing, beta becomes stable
-- Strong compatability Guarantees
+- Strong compatability guarantees
 - Small iterations over large changes
 
----
+Note:
 
-## Philosophy
-
-- Predictable runtime behaviour
-- No garbage collection
-- Good support for "programming in the large"
-- Practical
-- Easy to integrate
-- Approachable
+- rust first rapid-release language?
+- backwards-compat really?
 
 ---
+
+## Rust's Influences
+
+- ML
+- Haskell
+- C++
+- Scala
+- Ruby
+- Go?
+- Python
+
+Note:
+
+- ask graydon
+- Scala - what _not_ to do
+- ML - functional / ADTs
+- Haskell / Scala - typeclasses
+- C++ - syntax, compile / runtime model, governance
+- Ruby - iterators
+  - cargo: bundler -> cargo -> yarn
+  - personalities
+- Go - parallel evolution, governance
+- Python - community, RFC
+
+---
+
+## Rust's Influence
+
+- Proven practicality of "linear" type systems (ownership)
+- Proven practicality of "region" analysis (borrowwing)
+- Code of conduct
+- RFC process
+- This Week in Rust
+- Compiler error messages
+- C++ standards, Swift, Elm
+
+Note:
+
+- cyclone
+- RFC and swift
+- swift and C++
+- elm - Result
 
 ## Philosophy
 
@@ -66,9 +192,15 @@ Note:
 
 ## The Three Words
 
-- Safe
-- Concurrent
-- Fast
+A systems programming language
+
+Pursuing the trifecta:
+
+**Safe, Concurrent, Fast**
+
+Note:
+
+- say a little about this
 
 ---
 
@@ -77,6 +209,7 @@ Note:
 Memory-safe means:
 
 - No illegal memory access
+  - No crashes (segmentation faults)
 - Deallocation is automated
 
 **Warning:** memory leaks are *safe* by that definition!
@@ -85,10 +218,12 @@ Memory-safe means:
 
 ## Concurrent
 
-"Concurrency without fear"
+"Fearless concurrency"
+
 - Detects concurrent access to data and requires synchronisation
 - Detects when unsynchronised access is safely possible!
 - Protects from data races!
+- Static guarantees
 
 ---
 
@@ -98,6 +233,14 @@ Memory-safe means:
 - Optimizing compiler based on LLVM
 - Features with runtime cost are explicit
 - Static dispatch by default
+- "Pay for what you use"
+- Zero-cost abstractions
+
+Note:
+
+- tradeoffs of static dispatch
+  - icache
+  - vs C
 
 ---
 
@@ -106,14 +249,7 @@ Memory-safe means:
 - Opt-in unsafe memory access
 - Great FFI support
 - Understandable error messages by the compiler
-- Comprehensive documentation you can trust
-
----
-
-## Lean
-
-- "Pay what you use" features
-- Focus on Zero-cost abstractions
+- Comprehensive documentation you can (mostly) trust
 
 ---
 

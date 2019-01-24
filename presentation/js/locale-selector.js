@@ -45,7 +45,7 @@ const LocaleSelector = (function(){
       Reveal.initialize(this.reveal);
       const observer = new MutationObserver((records, observer) =>{
         if(records.length > 0 && records[0].addedNodes){
-          this.addLocaleSelector(records[0].addedNodes[0]);
+          //this.addLocaleSelector(records[0].addedNodes[0]);
           this.setDocumentTitle(records[0].addedNodes[0]);
           observer.disconnect();
         }
