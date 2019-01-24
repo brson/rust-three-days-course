@@ -12,5 +12,5 @@ use foo::do_a_thing;
 pub mod bar;
 
 fn main() {
-    foo()
+    do_a_thing()
 }

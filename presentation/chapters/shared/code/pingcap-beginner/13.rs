@@ -1,4 +1,5 @@
-// &mut denotes a mutable borrow
+// &mut denotes a mutable borrow.
+// There is also &, for immutable borrow.
 fn accepts_borrow(thing: &mut u32) {
     *thing += 1
 }

@@ -280,17 +280,6 @@ Note:
 
 # Syntax
 
-<!--
-
-## TODO
-
-- slides for relevant beginner pingcap topics
-  - generics
-  - adts & match
-  - gc
-
--->
-
 ---
 
 Rust has a syntax designed to _look_ familiar to C and C++ programmers, the
@@ -301,6 +290,61 @@ traditional systems programming languages.
 ## Basics
 
 <pre><code data-source="chapters/shared/code/pingcap-beginner/1.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Basic Types
+
+---
+
+## Booleans
+
+Boringly familiar.
+
+<pre><code data-source="chapters/shared/code/pingcap-beginner/19.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Integers
+
+Rust comes with all standard int types, with and without sign
+
+- i8, u8
+- i16, u16
+- i32 **(default)**, u32
+- i64, u64
+- i128, u128
+- isize, usize
+
+`isize` and `usize` are architecture dependent.
+
+---
+
+## Casts
+
+**Can** lose information:
+
+<pre><code data-source="chapters/shared/code/pingcap-beginner/20.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+---
+
+## Casts
+
+**Cannot** lose information:
+
+<pre><code data-source="chapters/shared/code/pingcap-beginner/21.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+
+---
+
+## Floats
+
+Rust also comes with floats of standard sizes: f32, f64
+
+<pre><code data-source="chapters/shared/code/pingcap-beginner/22.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
+
+There is no default float.
+
 
 ---
 
@@ -442,61 +486,6 @@ Mutability is always apparent from reading the code.
 
 ---
 
-## Basic Types
-
----
-
-## Booleans
-
-Boringly familiar.
-
-<pre><code data-source="chapters/shared/code/pingcap-beginner/19.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
----
-
-## Integers
-
-Rust comes with all standard int types, with and without sign
-
-- i8, u8
-- i16, u16
-- i32 **(default)**, u32
-- i64, u64
-- i128, u128
-- isize, usize
-
-`isize` and `usize` are architecture dependent.
-
----
-
-## Casts
-
-**Can** lose information:
-
-<pre><code data-source="chapters/shared/code/pingcap-beginner/20.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
----
-
-## Casts
-
-**Cannot** lose information:
-
-<pre><code data-source="chapters/shared/code/pingcap-beginner/21.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
-
----
-
-## Floats
-
-Rust also comes with floats of all standard sizes: f32, f64
-
-<pre><code data-source="chapters/shared/code/pingcap-beginner/22.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
-
-There is no default float.
-
-
----
-
 # Basic Generics
 
 ---
@@ -509,17 +498,17 @@ Generics are everywhere. You will use them frequently.
 
 <pre><code data-source="chapters/shared/code/pingcap-beginner/23.rs" data-trim="hljs rust" class="lang-rust"></code></pre>
 
+But... This isn't very useful.
+
 ---
 
 ## With Bounds
 
 Generic functions can also have bounds.
 
-These are equivalent:
-
 <pre><code data-source="chapters/shared/code/pingcap-beginner/24.rs" data-trim="hljs rust"></code></pre>
 
-`where` is preferred for complex generics.
+This is more useful, we know `T` implements `Debug`.
 
 ---
 
@@ -531,7 +520,7 @@ These are equivalent:
 
 ## Type Inference
 
-Rust finds the types of all variables and generics if it has sufficient information.
+Rust finds the types of all variables and generics, if it has sufficient information.
 
 This only applies *inside* of function limits.
 
